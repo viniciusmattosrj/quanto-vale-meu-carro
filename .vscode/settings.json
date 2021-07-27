@@ -1,0 +1,21 @@
+{
+  "editor.minimap.enabled": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "eslint.autoFixOnSave": true,
+  "editor.tabSize": 4,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.associations": {
+    "*.js": "javascript"
+  },
+  "editor.suggestSelection": "first",
+  "javascript.format.semicolons": "insert",
+  "typescript.format.semicolons": "insert",
+  "workbench.preferredLightColorTheme": "Visual Studio Dark",
+  "workbench.preferredDarkColorTheme": "Visual Studio Dark",
+  "workbench.colorTheme": "Default Dark+",
+  "prettier.singleQuote": true,
+  "prettier.quoteProps": "consistent",
+  "editor.formatOnSave": true
+}
