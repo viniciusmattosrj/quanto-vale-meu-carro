@@ -31,7 +31,7 @@ const getCar = ({ brand, model, year, version }) => {
     if (!version) {
         throw new Error('VersionId is required')
     }
-    return requestInstance.get(`/brands/${brand}/models/${model}/years/${year}/versions/${version}`)
+    return requestInstance.get(`/brands/${brand}/models/${model}/years/${year}/versions/${version.versionId}`)
 }
 
 const Request = {

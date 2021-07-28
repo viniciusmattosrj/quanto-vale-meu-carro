@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react'
 import Request from '@services/api'
 
 const useCreditas = () => {
+    const [ loading, setLoading ] = useState(false)
     const [ brands, setBrands ] = useState([])
     const [ models, setModels ] = useState([])
     const [ years, setYears ] = useState([])
@@ -47,20 +48,26 @@ const useCreditas = () => {
 
     const getCar = useCallback(async (form) => {
         try {
+            setLoading(true);
             const response = await Request.getCar(form)
+            setLoading(false);
             setCar(response.data)
         }catch(e) {
             setErrors(e.message)
         }
     }, [])
+
+    const clearCar = () => {
+        setCar(null)
+    }
     
     return { 
         getBrands, brands, 
         getModels, models, 
         getYears, years, 
         getVersions, versions, 
-        getCar, car,
-        errors
+        getCar, car, clearCar,
+        errors, loading
     }
 };
 
