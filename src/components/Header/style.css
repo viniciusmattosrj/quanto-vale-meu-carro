@@ -1,0 +1,17 @@
+.header-nav-wrapper {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  transition: all 0.3s ease 0s;
+  background-color: silver;
+  margin-bottom: 10px;
+}
+
+.header-text {
+  margin: 0 auto;
+  color: #42c84b;
+  align-items: center;
+  padding: 30px;
+}

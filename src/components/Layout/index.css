@@ -1,0 +1,21 @@
+.container-main {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  background-color: #f7f7f7;
+  width: 90%;
+  padding: 20px;
+  margin: 0px auto;
+  border-radius: 10px;
+}
+
+.container-main-content {
+  background-color: #fafafa;
+  width: 80%;
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
