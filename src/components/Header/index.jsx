@@ -1,16 +1,24 @@
-import './style.css';
 import React from 'react';
+import LogoImage from '@assets/images/logo.png';
+import { Grid, Typography, Paper } from '@material-ui/core';
+import { useStyles } from './style';
 
 const Header = () => {
+  const classes = useStyles();
+
   return (
-    <nav>
-      <div className="header-nav-wrapper">
-        <p className="header-text">QUANTO VALE SEU VEICULO?</p>
-        <a href="" className="brand-logo">
-          <img src="" alt="Logo" />
-        </a>
-      </div>
-    </nav>
+    <Paper className={classes.root}>
+      <Grid container>
+        <Grid item xs={12} md={10} lg={10}>
+          <Typography className={classes.label} variant="h4" align="center">
+            QUANTO VALE SEU VEICULO?
+          </Typography>
+        </Grid>
+        <Grid item xs={12} md={2} lg={2}>
+          <img src={LogoImage} alt="Logo" />
+        </Grid>
+      </Grid>
+    </Paper>
   );
 };
 

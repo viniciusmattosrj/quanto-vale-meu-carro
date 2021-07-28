@@ -1,4 +1,9 @@
 .banner {
   width: 100%;
-  background-color: green;
+  padding-bottom: 8px;
+}
+
+img {
+  width: 100%;
+  border-radius: 5px;
 }
