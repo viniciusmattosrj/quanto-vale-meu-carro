@@ -1,0 +1,31 @@
+.information-grid {
+  padding: 10px;
+}
+
+.information-box-title {
+  border-radius: 10px 10px 0px 0px;
+  width: 100%;
+  height: 36px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  background: linear-gradient(
+    90.19deg,
+    rgb(98, 233, 72) 1.25%,
+    rgb(42, 179, 77) 98.84%
+  );
+}
+
+.information-box-text {
+  border-radius: 10px;
+  width: 100%;
+  height: 42px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  background: rgb(255, 255, 255);
+}
