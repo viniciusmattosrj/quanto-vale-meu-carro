@@ -7,25 +7,17 @@ import ListYears from '@modules/main/components/ListYears'
 import ListVersions from '@modules/main/components/ListVersions'
 import CarDetail from '@modules/main/components/CarDetail'
 import DisplayErrors from '@modules/main/components/DisplayErrors'
-import Footer from '@components/Footer'
 import Banner from '@components/Banner'
-import { Grid } from '@material-ui/core'
+import { Grid, Box, Button } from '@material-ui/core'
 
-
-export const FORM_KEYS = {
-    BRAND: 'brand',
-    MODEL: 'model',
-    YEAR: 'year',
-    VERSION: 'version',
-}
 const Home = () => {
     const { 
         getBrands, brands, 
         getModels, models, 
         getYears, years, 
         getVersions, versions, 
-        getCar, car,
-        errors
+        getCar, car, clearCar,
+        errors, loading
      } = useCreditas()
 
     const INITIAL_STATE = { brand:null, model:null, year:null, version: null } 
@@ -37,6 +29,7 @@ const Home = () => {
 
     const resetForm = () => {
         setForm({ brand:null, model:null, year:null, version: null })
+        clearCar()
     }
 
     useEffect(() => { getBrands() }, [ getBrands ])
@@ -60,15 +53,21 @@ const Home = () => {
     return (
         <Layout>
             <Banner /> 
-            <Footer /> 
             <DisplayErrors errors={errors} />
-            <Grid container alignItems="center" direction="row" >
-                <ListBrands brands={brands} onChange={changeForm} />
+            <Grid container spacing={2} alignItems="center" direction="row" > 
+                <ListBrands brands={brands} form={form} onChange={changeForm} />
                 <ListModels models={models} form={form} onChange={changeForm} /> 
                 <ListYears years={years} form={form} onChange={changeForm} />
                 <ListVersions versions={versions} form={form} onChange={changeForm} />
+                <Grid item xs={12} md={2} lg={2}> 
+                    <Box textAlign='center'>
+                        <Button fullWidth variant="contained" color="primary" disableElevation onClick={resetForm}>
+                            Limpar
+                        </Button>
+                    </Box>
+                </Grid>          
             </Grid> 
-            <CarDetail data={car} form={form} />
+            <CarDetail data={car} form={form} loading={loading} />
         </Layout>
     )
 }
