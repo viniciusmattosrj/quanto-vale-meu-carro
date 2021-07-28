@@ -1,6 +1,6 @@
 # Quanto vale meu carro?
 
-O QuantoValeMeuCarro é a versão web construída em React. Atualmente, voltada para os pessoas que tem interesse em consultar o valor de mercado do seu veículo.
+O QuantoValeMeuCarro é um produto web, porém idealizado em mobile-first e foi construída em ReactJS. Atualmente, voltada para os pessoas que tem interesse em consultar o valor de mercado do seu veículo.
 
 ## Requisitos
 
@@ -10,6 +10,7 @@ O QuantoValeMeuCarro é a versão web construída em React. Atualmente, voltada 
 - [Node]('https://nodejs.org/en/')
 - [npm]('https://classic.npmpkg.com/en/docs/install/#mac-stable')
 - [Docker]('https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04')
+- [API]('https://creditas-price-api.herokuapp.com/brands')
 
 ```bash
 docker --version
