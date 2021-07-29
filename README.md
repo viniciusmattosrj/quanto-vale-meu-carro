@@ -18,7 +18,6 @@ Docker version 19.03.1, build 74b1e89
 ```
 
 - Docker-Compose 1.24 ou superior
-
 ```bash
 docker-compose --version
 docker-compose version 1.24.1, build 4667896b
@@ -39,7 +38,6 @@ npm install
 ```
 
 ````
-
 Configurar no .env variavel
 
 ```bash
@@ -48,7 +46,12 @@ NODE_PATH='src/'
 
 # Iniciando e Testando
 
-Acesse [http://localhost:3000](http://localhost:3000) para visualizar no navegador o sistema irá atualizar constantemente após cada modificação
+
+Url desenvolvimento: [http://localhost:3000](http://localhost:3000)
+
+Url production: [https://quanto-vale-meu-carro.netlify.app](https://quanto-vale-meu-carro.netlify.app/)
+
+Para visualizar no navegador o sistema irá atualizar constantemente após cada modificação
 
 ### Para utilizar sem Docker
 
@@ -62,7 +65,7 @@ npm start
 docker-compose up
 ```
 
-## Testando o projeto
+### Testando o projeto
 
 ```sh
 npm test
@@ -70,14 +73,21 @@ npm test
 
 Execute para rodar os testes do projeto
 
-# Deploy
+## Deploy
 
-## Preparando o projeto para produção
+### Preparando o projeto para produção
 
 ```sh
 npm build
 ```
 
-Prepara o build para produção disponivel na pasta `build`
-
+Prepara o build para produção disponível na pasta `build`
 O build minifica arquivos e nome de arquivos e inclui hashes
+
+```sh
+npm run build
+```
+
+```sh
+netlify deploy --prod
+```
