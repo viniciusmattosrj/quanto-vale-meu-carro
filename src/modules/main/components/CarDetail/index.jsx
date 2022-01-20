@@ -12,7 +12,7 @@ const CarDetail = ({ data, form, loading }) => {
       </Box>
     );
 
-  if (!data && !form.brand && !form.model && !form.year && !form.version)
+  if (!data || !form.brand || !form.model || !form.year || !form.version)
     return null;
 
   if (!data) return <Empty message="Nenhum registro encontrado" />;

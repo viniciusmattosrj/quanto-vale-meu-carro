@@ -1,75 +1,82 @@
-import React, { useEffect, useState } from 'react'
-import Layout from '@components/Layout'
-import useCreditas from '@modules/main/hooks/useCreditas'
-import ListBrands from '@modules/main/components/ListBrands'
-import ListModels from '@modules/main/components/ListModels'
-import ListYears from '@modules/main/components/ListYears'
-import ListVersions from '@modules/main/components/ListVersions'
-import CarDetail from '@modules/main/components/CarDetail'
-import DisplayErrors from '@modules/main/components/DisplayErrors'
-import Banner from '@components/Banner'
-import { Grid, Box, Button } from '@material-ui/core'
+import React from 'react';
+import Layout from '@components/Layout';
+import useCreditas from '@modules/main/hooks/useCreditas';
+import CarDetail from '@modules/main/components/CarDetail';
+import Select from '@modules/main/components/Select';
+import DisplayErrors from '@modules/main/components/DisplayErrors';
+import Banner from '@components/Banner';
+import { Grid, Box, Button } from '@material-ui/core';
+import { FORM_KEYS } from '@modules/main/utils';
 
 const Home = () => {
-    const { 
-        getBrands, brands, 
-        getModels, models, 
-        getYears, years, 
-        getVersions, versions, 
-        getCar, car, clearCar,
-        errors, loading
-     } = useCreditas()
+  const { models, operations } = useCreditas();
 
-    const INITIAL_STATE = { brand:null, model:null, year:null, version: null } 
-    const [ form, setForm ] = useState(INITIAL_STATE)
+  return (
+    <Layout>
+      <Banner />
+      <DisplayErrors errors={models.errors} />
+      <Grid container spacing={2} alignItems="center" direction="row">
+        <Select
+          id="combo-box-brand"
+          value={models.userChoose.brand}
+          data={models.response.brands}
+          onChange={(event, value) => {
+            operations.updateForm({ key: FORM_KEYS.BRAND, value });
+          }}
+          label="Marca"
+        />
 
-    const changeForm = (key, value) => {
-        setForm({ ...form, [ key ] : value })
-    }
+        <Select
+          id="combo-box-model"
+          value={models.userChoose.model}
+          data={models.response.models}
+          onChange={(event, value) =>
+            operations.updateForm({ key: FORM_KEYS.MODEL, value })
+          }
+          label="Modelo"
+        />
 
-    const resetForm = () => {
-        setForm({ brand:null, model:null, year:null, version: null })
-        clearCar()
-    }
+        <Select
+          id="combo-box-year"
+          value={models.userChoose.year}
+          data={models.response.years}
+          onChange={(event, value) =>
+            operations.updateForm({ key: FORM_KEYS.YEAR, value })
+          }
+          label="Ano"
+        />
 
-    useEffect(() => { getBrands() }, [ getBrands ])
+        <Select
+          id="combo-box-version"
+          value={models.userChoose.version}
+          data={models.response.versions}
+          onChange={(event, value) => {
+            operations.updateForm({ key: FORM_KEYS.VERSION, value })
+          }}
+          label="Versao"
+        />
 
-    useEffect(() => {        
-        if (form.brand) { getModels( form ) } 
-    }, [ form.brand, getModels ] )
+        <Grid item xs={12} md={2} lg={2}>
+          <Box textAlign="center">
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              disableElevation
+              onClick={operations.clearCar}
+            >
+              Limpar
+            </Button>
+          </Box>
+        </Grid>
+      </Grid>
+      <CarDetail
+        data={models.response.car_information}
+        form={models.userChoose}
+        loading={models.loading}
+      />
+    </Layout>
+  );
+};
 
-    useEffect(() => {        
-        if (form.model) { getYears( form ) } 
-    }, [ form.model, getYears ] )
-
-    useEffect(() => {        
-        if (form.year) { getVersions( form ) } 
-    }, [ form.year, getVersions ] )
-
-    useEffect(() => {        
-        if (form.version) { getCar( form ) } 
-    }, [ form.version, getCar ] )
-   
-    return (
-        <Layout>
-            <Banner /> 
-            <DisplayErrors errors={errors} />
-            <Grid container spacing={2} alignItems="center" direction="row" > 
-                <ListBrands brands={brands} form={form} onChange={changeForm} />
-                <ListModels models={models} form={form} onChange={changeForm} /> 
-                <ListYears years={years} form={form} onChange={changeForm} />
-                <ListVersions versions={versions} form={form} onChange={changeForm} />
-                <Grid item xs={12} md={2} lg={2}> 
-                    <Box textAlign='center'>
-                        <Button fullWidth variant="contained" color="primary" disableElevation onClick={resetForm}>
-                            Limpar
-                        </Button>
-                    </Box>
-                </Grid>          
-            </Grid> 
-            <CarDetail data={car} form={form} loading={loading} />
-        </Layout>
-    )
-}
-
-export default Home
+export default Home;
