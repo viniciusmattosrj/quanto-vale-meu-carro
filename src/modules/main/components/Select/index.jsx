@@ -1,10 +1,10 @@
 import React from 'react';
-import { FORM_KEYS } from '@modules/main/utils';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Grid } from '@material-ui/core';
+
 const Select = ({ form, onChange, id, data, value, label }) => {
-  if (!data.length) return null;
+  //if (!data.length) return null;
 
   return (
     <Grid item xs={12} md={2} lg={2} className="grid-list">
@@ -12,7 +12,12 @@ const Select = ({ form, onChange, id, data, value, label }) => {
         id={id}
         value={value}
         options={data}
-        getOptionLabel={(option) => option}
+        getOptionLabel={(option) => {
+          if (typeof option === 'object') {
+            return option.version
+          }
+          return option.toString()
+        }}
         onChange={onChange}
         renderInput={(params) => (
           <TextField {...params} label={label} variant="outlined" />
